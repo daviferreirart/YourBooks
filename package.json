@@ -5,6 +5,7 @@
   "main": "server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart": "npx prisma migrate deploy",
     "devStart": "tsnd src/server.ts --transpile-only--respawn",
     "start": "node dist/server.js",
     "build": "tsc"
