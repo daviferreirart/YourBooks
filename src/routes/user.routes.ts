@@ -14,7 +14,7 @@ app.post('/user', async (req: Request, res: Response) => {
 
 app.get('/user', async (req: Request, res: Response) => {
     const users = await prisma.user.findMany()
-    return res.send(200).json(users)
+    return res.status(200).json(users)
 })
 
 export default app

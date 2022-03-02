@@ -5,7 +5,9 @@
   "main": "server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "devStart": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts"
+    "devStart": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
+    "start": "node dist/server.js",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",

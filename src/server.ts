@@ -5,7 +5,7 @@ import user from './routes/user.routes'
 
 const app = express()
 
-app.use(cors)
+app.use(cors())
 app.use(express.json())
 
 app.listen(3333 || process.env.PORT, () => {
