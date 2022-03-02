@@ -5,7 +5,7 @@
   "main": "server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "devStart": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
+    "devStart": "tsnd src/server.ts --transpile-only--respawn",
     "start": "node dist/server.js",
     "build": "tsc"
   },
@@ -26,6 +26,7 @@
     "cpf-cnpj-validator": "^1.0.3",
     "date-fns": "^2.28.0",
     "express": "^4.17.2",
+    "express-async-errors": "^3.1.1",
     "nodemon": "^2.0.15",
     "prisma": "^3.9.2",
     "ts-node-dev": "^1.1.8",

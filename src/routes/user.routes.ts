@@ -8,7 +8,7 @@ const app = express()
 app.post('/user', async (req: Request, res: Response) => {
     const { cpf, name } = req.body
 
-    const user = await UserValidations.CreateNewUser(cpf, name)
+    const user = await UserValidations.CreateNewUser(cpf,name)
     return res.status(201).json(user)
 })
 

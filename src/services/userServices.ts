@@ -21,7 +21,7 @@ abstract class UserValidations {
         }
         const user = await prisma.user.create({
             data: {
-                user_cpf: cpfUser,
+                user_cpf: cpfFormatado,
                 username: name
             }
         })

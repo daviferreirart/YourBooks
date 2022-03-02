@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import errorHandler from './error/handler'
+import 'express-async-errors';
 import user from './routes/user.routes'
 
 const app = express()
