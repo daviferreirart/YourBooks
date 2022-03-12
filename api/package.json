@@ -1,5 +1,5 @@
 {
-  "name": "yourbooks",
+  "name": "yourbooks-api",
   "version": "1.0.0",
   "description": "site da cadeira de estágio 2",
   "main": "server.ts",
@@ -35,6 +35,7 @@
     "typescript": "^4.5.5"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.12"
+    "@types/cors": "^2.8.12",
+    "cross-env": "^7.0.3"
   }
 }
