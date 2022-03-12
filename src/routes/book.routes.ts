@@ -16,4 +16,12 @@ app.get('/books/isbn', async (req, res) => {
     return res.status(200).json(isbnLivro)
 })
 
+app.get('/books/title', async (req, res) => {
+    const { title } = req.body
+
+    const titleResult = await BooksServices.getBookByTitle(title)
+
+    res.status(200).json(titleResult)
+})
+
 export default app

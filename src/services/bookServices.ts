@@ -20,4 +20,12 @@ export default abstract class BooksServices {
             throw new AppError('Erro ao buscar o livro pelo ISBN')
         }
     }
+    public static async getBookByTitle(title:string){
+        try {
+            const books = await axios.get('https://www.googleapis.com/books/v1/volumes?q=intitle:' + `${title}`)
+            return books.data
+        } catch (error) {
+            throw new AppError('Erro ao buscar o livro pelo titulo')
+        }
+    }
 }
