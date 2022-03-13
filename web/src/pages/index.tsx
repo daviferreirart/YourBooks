@@ -6,7 +6,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const session = await getSession({ req })
 
   if (session) {
-
     return {
       redirect: {
         destination: '/app',
@@ -18,6 +17,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     props: {}
   }
 };
+
 export default function Home() {
 
   function handleSignin() {
