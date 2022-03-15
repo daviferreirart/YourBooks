@@ -3,6 +3,6 @@
 
 # npx lerna run devStart --scope yourbooks-api  --stream = rodar aplicação back
 
-# npx lerna run dev --scope yourbooks-api --stream = rodar aplicação web
+# npx lerna run dev --scope yourbooks-web --stream = rodar aplicação web
 
 
