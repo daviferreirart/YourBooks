@@ -1,31 +1,57 @@
 import axios from "axios";
 import AppError from "../error/AppError";
 
+type BookData = {
+  title: string,
+  authors: string[]
+  publishedYear: number
+  thumbnail: string
+}
+
 export default abstract class BooksServices {
-    public static async getAllBooksWithAuthorName(author: string) {
-        try {
-            const books = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${author}`)
-            return books.data
-        } catch (error) {
-            throw new AppError('Erro ao buscar o livro pelo nome do Autor')
-        }
+  public static async getAllBooksWithAuthorName(author: string): Promise<BookData[]> {
+    try {
+      const { data } = await axios.get<{ items: any[] }>(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${author}`)
+      const books: BookData[] = data.items.map(item => ({
+        title: item.volumeInfo.title,
+        authors: item.volumeInfo.authors,
+        publishedYear: new Date(item.volumeInfo.publishedDate).getFullYear(),
+        thumbnail: item.volumeInfo.imageLinks?.thumbnail ?? ""
+      }))
+
+      return books
+    } catch (error) {
+      throw new AppError('Erro ao buscar o livro pelo nome do Autor')
     }
+  }
 
 
-    public static async getBookByISBN(isbn:string){
-        try {
-            const books = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`)
-            return books.data
-        } catch (error) {
-            throw new AppError('Erro ao buscar o livro pelo ISBN')
-        }
+  public static async getBookByISBN(isbn: string) {
+    try {
+      const { data } = await axios.get<{ items: any[] }>(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`)
+      const books: BookData[] = data.items.map(item => ({
+        title: item.volumeInfo.title,
+        authors: item.volumeInfo.authors,
+        publishedYear: new Date(item.volumeInfo.publishedDate).getFullYear(),
+        thumbnail: item.volumeInfo.imageLinks?.thumbnail ?? ""
+      }))
+      return books
+    } catch (error) {
+      throw new AppError('Erro ao buscar o livro pelo ISBN')
     }
-    public static async getBookByTitle(title:string){
-        try {
-            const books = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${title}`)
-            return books.data
-        } catch (error) {
-            throw new AppError('Erro ao buscar o livro pelo titulo')
-        }
+  }
+  public static async getBookByTitle(title: string): Promise<BookData[]> {
+    try {
+      const { data } = await axios.get<{ items: any[] }>(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${title}`)
+      const books: BookData[] = data.items.map(item => ({
+        title: item.volumeInfo.title,
+        authors: item.volumeInfo.authors,
+        publishedYear: new Date(item.volumeInfo.publishedDate).getFullYear(),
+        thumbnail: item.volumeInfo.imageLinks?.thumbnail ?? ""
+      }))
+      return books
+    } catch (error) {
+      throw new AppError('Erro ao buscar o livro pelo titulo')
     }
+  }
 }

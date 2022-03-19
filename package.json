@@ -3,9 +3,5 @@
   "private": true,
   "devDependencies": {
     "lerna": "^4.0.0"
-  },
-  "dependencies": {
-    "axios": "^0.26.1",
-    "next-auth": "^4.2.1"
   }
 }
