@@ -1,5 +1,4 @@
 import { Box, Button, Card, TextField } from '@material-ui/core';
-import { Stack, Paper } from '@mui/material'
 import React, { FormEvent, useState } from 'react';
 import { api } from '../../../services/api';
 import { Container } from '../../../styles/search';
