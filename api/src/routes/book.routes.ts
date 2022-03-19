@@ -4,24 +4,24 @@ import BooksServices from "../services/bookServices";
 
 const app = express()
 
-app.get('/books/author', async (req, res) => {
-    const { nome } = req.body
-    const livros = await BooksServices.getAllBooksWithAuthorName(nome)
-    return res.status(200).json(livros)
+app.get('/books/author/:name', async (req, res) => {
+  const { name } = req.params
+  const livros = await BooksServices.getAllBooksWithAuthorName(name)
+  return res.status(200).json(livros)
 })
 
-app.get('/books/isbn', async (req, res) => {
-    const { isbn } = req.body
-    const isbnLivro = await BooksServices.getBookByISBN(isbn)
-    return res.status(200).json(isbnLivro)
+app.get('/books/isbn/:isbn', async (req, res) => {
+  const { isbn } = req.params
+  const isbnLivro = await BooksServices.getBookByISBN(isbn)
+  return res.status(200).json(isbnLivro)
 })
 
-app.get('/books/title', async (req, res) => {
-    const { title } = req.body
+app.get('/books/title/:title', async (req, res) => {
+  const { title } = req.params
 
-    const titleResult = await BooksServices.getBookByTitle(title)
+  const titleResult = await BooksServices.getBookByTitle(title)
 
-    res.status(200).json(titleResult)
+  res.status(200).json(titleResult)
 })
 
 export default app

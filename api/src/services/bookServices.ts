@@ -4,7 +4,7 @@ import AppError from "../error/AppError";
 export default abstract class BooksServices {
     public static async getAllBooksWithAuthorName(author: string) {
         try {
-            const books = await axios.get('https://www.googleapis.com/books/v1/volumes?q=inauthor:' + `${author}`)
+            const books = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${author}`)
             return books.data
         } catch (error) {
             throw new AppError('Erro ao buscar o livro pelo nome do Autor')
@@ -14,7 +14,7 @@ export default abstract class BooksServices {
 
     public static async getBookByISBN(isbn:string){
         try {
-            const books = await axios.get('https://www.googleapis.com/books/v1/volumes?q=isbn:' + `${isbn}`)
+            const books = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`)
             return books.data
         } catch (error) {
             throw new AppError('Erro ao buscar o livro pelo ISBN')
@@ -22,7 +22,7 @@ export default abstract class BooksServices {
     }
     public static async getBookByTitle(title:string){
         try {
-            const books = await axios.get('https://www.googleapis.com/books/v1/volumes?q=intitle:' + `${title}`)
+            const books = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${title}`)
             return books.data
         } catch (error) {
             throw new AppError('Erro ao buscar o livro pelo titulo')
