@@ -1,4 +1,4 @@
-import { Container, LoginGoogleButton, AppName } from './_styles'
+import { Container, LoginGoogleButton, AppName } from '../../styles/login'
 import { GetServerSideProps } from 'next';
 import { HiOutlineBookOpen } from 'react-icons/hi'
 import {FcGoogle} from 'react-icons/fc'
@@ -10,7 +10,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   if (session) {
     return {
       redirect: {
-        destination: '/search',
+        destination: '/app/search',
         permanent: false,
       }
     }
