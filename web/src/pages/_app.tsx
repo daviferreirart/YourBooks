@@ -1,7 +1,7 @@
 import { SessionProvider } from 'next-auth/react'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
-import '../styles/globals.css'
+import GlobalStyles from '../styles/global'
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps: { session, ...pageProps } }) => {
   return (
@@ -11,6 +11,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps: { session, ...pagePro
       </Head>
       <SessionProvider session={session}>
         <Component {...pageProps} />
+        <GlobalStyles/>
       </SessionProvider>
     </>
   )
