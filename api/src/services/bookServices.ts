@@ -42,7 +42,7 @@ export default abstract class BooksServices {
   }
   public static async getBookByTitle(title: string): Promise<BookData[]> {
     try {
-      const { data } = await axios.get<{ items: any[] }>(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${title}`)
+      const { data } = await axios.get<{ items: any[] }>(`https://www.googleapis.com/books/v1/volumes?q=intitle:${title}`)
       const books: BookData[] = data.items.map(item => ({
         title: item.volumeInfo.title,
         authors: item.volumeInfo.authors,
