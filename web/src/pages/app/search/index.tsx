@@ -38,7 +38,7 @@ const Search: React.FC = () => {
         {livros.map((livro, index) => {
           return (
             <Card key={index}>
-              <a href={livro.link} target="_blank">
+              <a href={livro.link} target="_blank" rel="noreferrer">
                 <img src={livro.thumbnail} />
               </a>
               <div>
