@@ -6,6 +6,7 @@ type BookData = {
   authors: string[]
   publishedYear: number
   thumbnail: string
+  link:string
 }
 
 export default abstract class BooksServices {
@@ -16,7 +17,8 @@ export default abstract class BooksServices {
         title: item.volumeInfo.title,
         authors: item.volumeInfo.authors,
         publishedYear: new Date(item.volumeInfo.publishedDate).getFullYear(),
-        thumbnail: item.volumeInfo.imageLinks?.thumbnail ?? ""
+        thumbnail: item.volumeInfo.imageLinks?.thumbnail ?? "",
+        link:item.volumeInfo.infoLink
       }))
 
       return books
@@ -33,7 +35,8 @@ export default abstract class BooksServices {
         title: item.volumeInfo.title,
         authors: item.volumeInfo.authors,
         publishedYear: new Date(item.volumeInfo.publishedDate).getFullYear(),
-        thumbnail: item.volumeInfo.imageLinks?.thumbnail ?? ""
+        thumbnail: item.volumeInfo.imageLinks?.thumbnail ?? "",
+        link:item.volumeInfo.infoLink
       }))
       return books
     } catch (error) {
@@ -47,7 +50,8 @@ export default abstract class BooksServices {
         title: item.volumeInfo.title,
         authors: item.volumeInfo.authors,
         publishedYear: new Date(item.volumeInfo.publishedDate).getFullYear(),
-        thumbnail: item.volumeInfo.imageLinks?.thumbnail ?? ""
+        thumbnail: item.volumeInfo.imageLinks?.thumbnail ?? "",
+        link:item.volumeInfo.infoLink
       }))
       return books
     } catch (error) {

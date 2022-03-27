@@ -1,39 +1,57 @@
-import { Box, Button, Card, TextField } from '@material-ui/core';
-import React, { FormEvent, useState } from 'react';
-import { api } from '../../../services/api';
-import { Container } from '../../../styles/search';
+import { Box, Button, TextField } from "@material-ui/core";
+import React, { FormEvent, useState } from "react";
+import { api } from "../../../services/api";
+import { Container, Card } from "../../../styles/search";
 
 const Search: React.FC = () => {
-  const [search, setSearch] = useState('')
-  const [livros, setLivros] = useState<BookData[]>([])
+  const [search, setSearch] = useState("");
+  const [livros, setLivros] = useState<BookData[]>([]);
 
   type BookData = {
-    title: string,
-    authors: string[]
-    publishedYear: string
-    thumbnail: string
-  }
-
+    title: string;
+    authors: string[];
+    publishedYear: string;
+    thumbnail: string;
+    link: string;
+  };
 
   const handleSearch = async (event: FormEvent) => {
-    event.preventDefault()
-    const { data } = await api.get(`/books/title/${search}`)
-    console.log(data)
-    setLivros(data)
-  }
+    event.preventDefault();
+    const { data } = await api.get(`/books/title/${search}`);
+    console.log(data);
+    setLivros(data);
+  };
   return (
-    <Container style={{ display: 'flex', flexDirection: 'column' }}>
-      <TextField type={'text'} value={search} onChange={(event) => setSearch(event.target.value)} variant='outlined' label={'Pesquisar'} color='primary' />
-      <Button type="submit" variant='contained' onClick={handleSearch}>Pesquisar pelo titulo</Button>
+    <Container style={{ display: "flex", flexDirection: "column" }}>
+      <TextField
+        type={"text"}
+        value={search}
+        onChange={(event) => setSearch(event.target.value)}
+        variant="outlined"
+        label={"Pesquisar"}
+        color="primary"
+      />
+      <Button type="submit" variant="contained" onClick={handleSearch}>
+        Pesquisar pelo titulo
+      </Button>
       <Box>
         {livros.map((livro, index) => {
           return (
-            <Card key={index}>{livro.title}</Card>
-          )
+            <Card key={index}>
+              <a href={livro.link} target="_blank">
+                <img src={livro.thumbnail} />
+              </a>
+              <div>
+                <span>Titulo: {livro.title}</span>
+                <span>Autores: {livro.authors}</span>
+                <span>Publicação: {livro.publishedYear}</span>
+              </div>
+            </Card>
+          );
         })}
       </Box>
     </Container>
-  )
-}
+  );
+};
 
 export default Search;
