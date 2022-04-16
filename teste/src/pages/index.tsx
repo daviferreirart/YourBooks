@@ -1,6 +1,8 @@
 import { FaArrowRight } from 'react-icons/fa'
-import { Container, Content, Infos, Name, Function, Intro, LinkProjects, Logo, Img } from '../../styles/indexStyle'
+import { Container, Content, Infos, Name, Function, Intro, LinkProjects, Logo, Img } from '../styles/indexStyle'
 import Link from 'next/link'
+import { GetServerSideProps } from 'next';
+import { getSession } from 'next-auth/react';
 
 export default function Home() {
   return (
@@ -22,3 +24,20 @@ export default function Home() {
    </Container>
   )
 }
+
+
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const session = await getSession({ req });
+
+  if (session) {
+    return {
+      redirect: {
+        destination: "/search",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+};

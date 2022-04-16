@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Title,
@@ -13,26 +13,13 @@ import {
 import { FaBars, FaTimes } from "react-icons/fa";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { GetServerSideProps } from "next";
-import { getSession, signIn } from "next-auth/react";
-import Home from "../login";
+import { GetServerSideProps, NextPage } from "next";
+import {signIn } from "next-auth/react";
+import Home from "../../pages/login";
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const session = await getSession({ req });
 
-  if (session) {
-    return {
-      redirect: {
-        destination: "/app/search",
-        permanent: false,
-      },
-    };
-  }
-  return {
-    props: {},
-  };
-};
-export default function Header() {
+const Header: React.FC = () => {
+
   const [sidebar, setSidebar] = useState(false);
   const { asPath } = useRouter();
 
@@ -62,11 +49,9 @@ export default function Header() {
               Página inicial
             </Ancora>
           </Link>
-          <Link href="login">
-            <Ancora onClick={Home}>
-              Login
-            </Ancora>
-          </Link>
+            <Link href="login">
+              <Ancora onClick={handleSignin}>Login</Ancora>
+            </Link>
           <Link href="biblioteca">
             <Ancora className={activeLink("biblioteca")} onClick={showSiderbar}>
               Minha biblioteca
@@ -76,4 +61,6 @@ export default function Header() {
       </Content>
     </Container>
   );
-}
+};
+
+export default Header;
