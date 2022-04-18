@@ -25,6 +25,6 @@ export default function Home() {
   function handleSignin() {
     signIn('google')
   }
-  return
+  return null
 
 }
