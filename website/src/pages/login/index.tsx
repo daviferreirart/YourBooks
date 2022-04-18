@@ -1,4 +1,4 @@
-import { Container, LoginGoogleButton, AppName } from '../../../../web/src/styles/login'
+import { Container, LoginGoogleButton, AppName } from '../../styles/login/index'
 import { GetServerSideProps } from 'next';
 import { HiOutlineBookOpen } from 'react-icons/hi'
 import {FcGoogle} from 'react-icons/fc'
@@ -25,13 +25,6 @@ export default function Home() {
   function handleSignin() {
     signIn('google')
   }
-  return (
-    <Container>
-      <HiOutlineBookOpen size={64} />
-      <LoginGoogleButton onClick={handleSignin}>
-        <FcGoogle/>
-        Sign in with google
-      </LoginGoogleButton>
-    </Container>
-  )
+  return
+
 }

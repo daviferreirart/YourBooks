@@ -1,7 +1,7 @@
 {
   "packages": [
     "api",
-    "web"
+    "website"
   ],
   "version": "0.0.0"
 }
