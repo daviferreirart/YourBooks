@@ -40,6 +40,9 @@ const Header: React.FC = () => {
           <Title>Your Books</Title>
           <SubTitle>Sua biblioteca virtual</SubTitle>
         </ContentTitle>
+       <Menu>
+         <FaBars onClick={showSiderbar}/>
+       </Menu>
         <NavLinks sidebar={sidebar}>
           <CloseSidebar onClick={showSiderbar}>
             <FaTimes />
@@ -55,6 +58,12 @@ const Header: React.FC = () => {
           <Link href="biblioteca">
             <Ancora className={activeLink("biblioteca")} onClick={showSiderbar}>
               Minha biblioteca
+            </Ancora>
+          </Link>
+
+          <Link href="sobre">
+            <Ancora className={activeLink("sobre")} onClick={showSiderbar}>
+              Sobre
             </Ancora>
           </Link>
         </NavLinks>

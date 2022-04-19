@@ -1,5 +1,6 @@
 import { Box, Button, TextField } from "@material-ui/core";
 import React, { FormEvent, useState } from "react";
+import { FaBookDead } from 'react-icons/fa';
 import { api } from "../../services/api";
 import { Container, Card } from "../../styles/search"
 
@@ -39,7 +40,7 @@ const Search: React.FC = () => {
           return (
             <Card key={index} >
               <a href={livro.link} target="_blank" rel="noreferrer">
-                <img src={livro.thumbnail} />
+                <img src={livro.thumbnail}/>
               </a>
               <div>
                 <span>Titulo: {livro.title}</span>

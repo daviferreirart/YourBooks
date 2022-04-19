@@ -29,14 +29,14 @@ export default function Home() {
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const session = await getSession({ req });
 
-  if (session) {
-    return {
-      redirect: {
-        destination: "/search",
-        permanent: false,
-      },
-    };
-  }
+  // if (session) {
+  //   return {
+  //     redirect: {
+  //       destination: "/search",
+  //       permanent: false,
+  //     },
+  //   };
+  // }
   return {
     props: {},
   };

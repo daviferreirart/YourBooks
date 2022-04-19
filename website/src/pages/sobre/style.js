@@ -10,34 +10,54 @@ export const Container = styled.div`
 export const Content = styled.div`
   width: 1120px;
   height: 100%;
-  justify-content: space-around;
   display: flex;
   align-items: center;
+  flex-direction: column;
+  gap: 10px;
   padding: 20px;
   @media (max-width: 600px) {
-    padding: 5px;
-  }
-  
-  @media (max-width: 760px) {
-    flex-direction: column-reverse;
-    justify-content: space-around;
+    padding: 10px;
   }
 `;
 
 export const Infos = styled.div`
   text-align: start;
-  width: 50%;
+  width: 100%;
   display: grid;
+  gap: 10px;
   @media (max-width: 760px) {
     width: 90%;
   }
 `;
 
 export const Name = styled.span`
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 500;
   @media (max-width: 760px) {
     font-size: 25px;
+  }
+`;
+
+export const Name3 = styled.span`
+  font-size: 20px;
+  font-weight: 500;
+  @media (max-width: 760px) {
+    font-size: 25px;
+  }
+`;
+
+export const Name2 = styled.span`
+margin-top: 40px;
+  width: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  word-break: break-word;  
+font-size: 20px;
+  font-weight: 500;
+  @media (max-width: 760px) {
+    font-size: 25px;
+    padding: 20px;
   }
 `;
 
@@ -53,37 +73,3 @@ export const Intro = styled.span`
     font-size: 15px;
   }
 `;
-
-export const LinkProjects = styled.button`
-  width: 10rem;
-  padding: 10px;
-  display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
-  font-weight: bold;
-  svg {
-    font-size: 20px;
-  }
-`;
-
-export const Logo = styled.div`
-  width: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  img {
-    width: 25rem;
-    height: 15rem;
-  }
-  @media (max-width: 760px) {
-    width: 90%;
-  }
-  @media (max-width: 600px) {
-    img {
-      width: 15rem;
-      height: 10rem;
-    }
-  }
-`;
-
-export const Img = styled.img``
