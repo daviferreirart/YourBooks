@@ -40,7 +40,7 @@ const Search: React.FC = () => {
           return (
             <Card key={index} >
               <a href={livro.link} target="_blank" rel="noreferrer">
-                <img src={livro.thumbnail}/>
+                <img src={livro.thumbnail ? livro.thumbnail:"images/illegal.png"} />
               </a>
               <div>
                 <span>Titulo: {livro.title}</span>
