@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Content, Infos, Name, Name2, Name3, Intro } from './style'
+import { Container, Content, Infos, Name, Name2, Name3, Intro } from '../../styles/sobre/styles'
 import { FaGoogle, FaReact } from 'react-icons/fa'
 import { SiTypescript, SiHeroku, SiPostgresql, SiNextdotjs} from 'react-icons/si'
 import ItemContact from '../../styles/sobre/index'
