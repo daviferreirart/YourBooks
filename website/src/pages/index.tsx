@@ -13,8 +13,12 @@ export default function Home() {
         <Intro>Utilize o YourBooks para montar a sua lista de livros, pesquisar titulos, 
           ver informações sobre as edições e encontrar novas leituras!
         </Intro>
-        <Link href="pesquisa">
-          <LinkProjects>Pesquisar livro <FaArrowRight /></LinkProjects>
+        <Link href="/search">
+          <LinkProjects>Pesquisar livro pelo titulo <FaArrowRight /></LinkProjects>
+        </Link>
+
+        <Link href="/searchAuthor">
+          <LinkProjects>Pesquisar livro pelo autor <FaArrowRight /></LinkProjects>
         </Link>
       </Infos>
       <Logo>
