@@ -37,7 +37,7 @@ const Search: React.FC = () => {
       </Button>
       <Box>
         {livros.map((livro, index) => {
-        const autores = livro.authors.length === 1 ? livro.authors[0] : livro.authors.reduce((acc,author,index)=>{
+        const autores = livro.authors === undefined ? livro.authors: livro.authors.reduce((acc,author,index)=>{
           if (index === livro.authors.length -1){
             return acc+author
           }
