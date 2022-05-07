@@ -1,8 +1,8 @@
-import { Box, Button, TextField } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
 import React, { FormEvent, useState } from "react";
-import { FaBookDead } from "react-icons/fa";
+import { BookList } from "../../components/BookList";
 import { api } from "../../services/api";
-import { Container, Card } from "../../styles/search";
+import { Container } from "../../styles/search";
 
 const Search: React.FC = () => {
   const [search, setSearch] = useState("");
@@ -35,31 +35,7 @@ const Search: React.FC = () => {
       <Button type="submit" variant="contained" onClick={handleSearch}>
         Pesquisar pelo titulo
       </Button>
-      <Box>
-        {livros.map((livro, index) => {
-        const autores = livro.authors === undefined ? livro.authors: livro.authors.reduce((acc,author,index)=>{
-          if (index === livro.authors.length -1){
-            return acc+author
-          }
-          return acc+author+", "
-        },"") 
-
-          return (
-            <Card key={index}>
-              <a href={livro.link} target="_blank" rel="noreferrer">
-                <img
-                  src={livro.thumbnail ? livro.thumbnail : "images/illegal.png"}
-                />
-              </a>
-              <div>
-                <span>Titulo: {livro.title}</span>
-                <span>Autores: {autores}</span>
-                <span>Publicação: {livro.publishedYear}</span>
-              </div>
-            </Card>
-          );
-        })}
-      </Box>
+      <BookList books={livros} />
     </Container>
   );
 };

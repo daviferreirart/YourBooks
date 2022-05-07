@@ -1,8 +1,9 @@
 import { Box, Button, TextField } from "@material-ui/core";
 import React, { FormEvent, useState } from "react";
-import { FaBookDead } from 'react-icons/fa';
+import { BookList } from "../../components/BookList";
+import { Card } from "../../components/BookList/style";
 import { api } from "../../services/api";
-import { Container, Card } from "../../styles/search"
+import { Container } from "../../styles/search";
 
 const Search: React.FC = () => {
   const [search, setSearch] = useState("");
@@ -35,22 +36,7 @@ const Search: React.FC = () => {
       <Button type="submit" variant="contained" onClick={handleSearch}>
         Pesquisar pelo o autor
       </Button>
-      <Box>
-        {livros.map((livro, index) => {
-          return (
-            <Card key={index} >
-              <a href={livro.link} target="_blank" rel="noreferrer">
-                <img src={livro.thumbnail? livro.thumbnail:"images/illegal.png"}/>
-              </a>
-              <div>
-                <span>Titulo: {livro.title}</span>
-                <span>Autores: {livro.authors}</span>
-                <span>Publicação: {livro.publishedYear}</span>
-              </div>
-            </Card>
-          );
-        })}
-      </Box>
+      <BookList books={livros}/>
     </Container>
   );
 };
