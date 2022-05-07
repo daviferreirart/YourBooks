@@ -10,30 +10,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  user_id    String   @id @default(uuid())
-  user_cpf   String   @unique
-  username   String
-  created_at DateTime @default(now())
-  book_id    User_Book []
+model Favorites {
+  id String @id @default(uuid())
+  isbn String 
+  user String 
 }
 
-model Books {
-  book_id     String @id
-  book_author String @unique
-  book_title  String @unique
-
-  userId User_Book []
-}
-
-
-model User_Book {
-user User @relation(fields:[userId],references:[user_id]) 
-userId String 
-
-book Books @relation(fields:[bookId],references:[book_id])
-bookId String
-
-@@id([userId, bookId])
-
-}
