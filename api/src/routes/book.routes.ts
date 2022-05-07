@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { Prisma, PrismaClient } from "@prisma/client";
 import express from "express";
 import BooksServices from "../services/bookServices";
 
@@ -50,5 +50,24 @@ app.delete("/favorites/:id", async (req, res) => {
   
   return res.status(204).send();
 });
+
+app.get("/favorites/:email",async(req,res)=>{
+  const prisma = new PrismaClient()
+
+  const {email} = req.params
+  const favorites = await prisma.favorites.findMany({
+    where:{
+      user:email
+    }
+  })
+
+  const data = await Promise.all(favorites.map(async favorite =>{
+  const book = await BooksServices.getBookByISBN(favorite.isbn);
+    return {
+      ...favorite, ...book
+    }
+  }))
+  return res.status(200).json(data)
+})
 
 export default app;

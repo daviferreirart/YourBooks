@@ -38,7 +38,7 @@ export default abstract class BooksServices {
         thumbnail: item.volumeInfo.imageLinks?.thumbnail ?? "",
         link:item.volumeInfo.infoLink
       }))
-      return books
+      return books[0]
     } catch (error) {
       throw new AppError('Erro ao buscar o livro pelo ISBN')
     }
