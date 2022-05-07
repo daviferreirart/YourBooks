@@ -18,6 +18,7 @@ const MyApp: React.FC<AppProps> = ({
     <>
       <Head>
         <title>Your Books</title>
+        <link rel="shortcut icon"  href="/images/logo.svg"/>
       </Head>
       <Header/>
       <ThemeProvider theme={darkTheme}>
