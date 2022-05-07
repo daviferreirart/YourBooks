@@ -47,6 +47,7 @@ app.delete("/favorites/:id", async (req, res) => {
       id,
     },
   });
+  
   return res.status(204).send();
 });
 
