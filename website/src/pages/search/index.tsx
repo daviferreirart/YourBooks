@@ -4,6 +4,7 @@ import { BookList } from "../../components/BookList";
 import { api } from "../../services/api";
 import { Container } from "../../styles/search";
 
+
 const Search: React.FC = () => {
   const [search, setSearch] = useState("");
   const [livros, setLivros] = useState<BookData[]>([]);
@@ -14,6 +15,7 @@ const Search: React.FC = () => {
     publishedYear: string;
     thumbnail: string;
     link: string;
+    isbn:string
   };
 
   const handleSearch = async (event: FormEvent) => {

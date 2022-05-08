@@ -25,6 +25,7 @@ const Biblioteca: React.FC<BibliotecaProps> = ({ books }) => {
         publishedYear: book.publishedYear,
         thumbnail: book.thumbnail,
         title: book.title,
+        isbn:book.isbn
       }))}
     />
   );

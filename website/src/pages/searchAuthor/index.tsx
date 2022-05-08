@@ -15,6 +15,7 @@ const Search: React.FC = () => {
     publishedYear: string;
     thumbnail: string;
     link: string;
+    isbn:string
   };
 
   const handleSearch = async (event: FormEvent) => {
