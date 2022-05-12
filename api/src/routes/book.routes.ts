@@ -1,5 +1,6 @@
 import { Prisma, PrismaClient } from "@prisma/client";
 import express from "express";
+import AppError from "../error/AppError";
 import BooksServices from "../services/bookServices";
 
 const app = express();
@@ -28,13 +29,21 @@ app.post("/favorites", async (req, res) => {
   const prisma = new PrismaClient();
   const { isbn, user } = req.body;
 
-  await prisma.favorites.create({
-    data: {
-      isbn,
-      user,
-    },
-  });
-  return res.status(201).send();
+  const isbnIsRegistered = await prisma.favorites.findFirst({where:{
+    isbn,AND:{
+      user
+    }
+  }})
+  if (!isbnIsRegistered){
+    await prisma.favorites.create({
+      data: {
+        isbn,
+        user,
+      },
+    });
+    return res.status(201).send();
+  }
+  throw new AppError("Livro já cadastrado!")
 });
 
 app.delete("/favorites/:id", async (req, res) => {

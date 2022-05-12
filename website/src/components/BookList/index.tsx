@@ -18,9 +18,15 @@ type BookData = {
 
 export const BookList: React.FC<{ books: BookData[] }> = ({ books }) => {
   const handleFavorite = useCallback(async (isbn: string) => {
-    const { user } = await getSession();
-    await api.post("/favorites", { isbn, user: user.email });
-    toast("Adicionado aos favoritos")
+    try {
+      const { user } = await getSession();
+      const resp = await api.post("/favorites", { isbn, user: user.email });
+      if (resp.status === 201) {
+        return toast("Adicionado aos favoritos !");
+      }
+    } catch (err) {
+      return toast("Livro já favoritado !");
+    }
   }, []);
 
   return (
