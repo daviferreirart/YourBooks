@@ -4,8 +4,7 @@ import { GrFavorite } from "react-icons/gr";
 import { useCallback } from "react";
 import { api } from "../../services/api";
 import { getSession } from "next-auth/react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 type BookData = {
   title: string;
@@ -25,13 +24,12 @@ export const BookList: React.FC<{ books: BookData[] }> = ({ books }) => {
         return toast("Adicionado aos favoritos !");
       }
     } catch (err) {
-      return toast("Livro já favoritado !");
+      return toast(err.response.data.message);
     }
   }, []);
 
   return (
     <>
-      <ToastContainer position="bottom-right" />
       <Box>
         {books.map((livro, index) => {
           const autores =

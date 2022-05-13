@@ -43,7 +43,7 @@ app.post("/favorites", async (req, res) => {
     });
     return res.status(201).send();
   }
-  throw new AppError("Livro já cadastrado!")
+  throw new AppError("Livro já favoritado!")
 });
 
 app.delete("/favorites/:id", async (req, res) => {

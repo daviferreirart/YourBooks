@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
 import { BookList } from "../../components/BookList";
 import { api } from "../../services/api";
-
+import { toast } from "react-toastify";
 interface BibliotecaProps {
   books: {
     id: string;
@@ -25,7 +25,7 @@ const Biblioteca: React.FC<BibliotecaProps> = ({ books }) => {
         publishedYear: book.publishedYear,
         thumbnail: book.thumbnail,
         title: book.title,
-        isbn:book.isbn
+        isbn: book.isbn,
       }))}
     />
   );
@@ -34,14 +34,20 @@ const Biblioteca: React.FC<BibliotecaProps> = ({ books }) => {
 export default Biblioteca;
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const { user } = await getSession({ req });
-
-  console.log(user);
-  const { data } = await api.get(`/favorites/${user.email}`);
-
+  const session = await getSession({ req });
+  if (session) {
+    const { data } = await api.get(`/favorites/${session.user.email}`);
+    return {
+      props: {
+        books: data,
+      },
+    };
+  }
   return {
-    props: {
-      books: data,
+    redirect: {
+      destination: "/",
+      permanent: false,
     },
+    props: {},
   };
 };
