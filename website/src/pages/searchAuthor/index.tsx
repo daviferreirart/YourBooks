@@ -4,8 +4,9 @@ import { BookList } from "../../components/BookList";
 import { Card } from "../../components/BookList/style";
 import { api } from "../../services/api";
 import { Container } from "../../styles/search";
-import { GetServerSideProps }from 'next';
-import { getSession } from 'next-auth/react';
+import { GetServerSideProps } from "next";
+import { getSession } from "next-auth/react";
+import { toast } from "react-toastify";
 
 const Search: React.FC = () => {
   const [search, setSearch] = useState("");
@@ -17,14 +18,18 @@ const Search: React.FC = () => {
     publishedYear: string;
     thumbnail: string;
     link: string;
-    isbn:string
+    isbn: string;
   };
 
   const handleSearch = async (event: FormEvent) => {
-    event.preventDefault();
-    const { data } = await api.get(`/books/author/${search}`);
-    console.log(data);
-    setLivros(data);
+    try {
+      event.preventDefault();
+      const { data } = await api.get(`/books/author/${search}`);
+      console.log(data);
+      setLivros(data);
+    } catch (err) {
+      toast(err.response.data.message);
+    }
   };
   return (
     <Container style={{ display: "flex", flexDirection: "column" }}>
@@ -39,7 +44,7 @@ const Search: React.FC = () => {
       <Button type="submit" variant="contained" onClick={handleSearch}>
         Pesquisar pelo o autor
       </Button>
-      <BookList books={livros}/>
+      <BookList books={livros} />
     </Container>
   );
 };
@@ -58,6 +63,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   return {
     props: {},
   };
-}
+};
 
 export default Search;
