@@ -29,12 +29,18 @@ app.post("/favorites", async (req, res) => {
   const prisma = new PrismaClient();
   const { isbn, user } = req.body;
 
-  const isbnIsRegistered = await prisma.favorites.findFirst({where:{
-    isbn,AND:{
-      user
-    }
-  }})
-  if (!isbnIsRegistered){
+  const bookAlreadyFavorited = await prisma.favorites.findFirst({
+    where: {
+      isbn,
+      AND: {
+        user,
+      },
+    },
+  });
+
+  const isbnIsValid = (await BooksServices.getBookByISBN(isbn)).isbn;
+
+  if (!bookAlreadyFavorited && isbnIsValid) {
     await prisma.favorites.create({
       data: {
         isbn,
@@ -43,7 +49,8 @@ app.post("/favorites", async (req, res) => {
     });
     return res.status(201).send();
   }
-  throw new AppError("Livro já favoritado!")
+  
+  throw new AppError("Livro já favoritado!");
 });
 
 app.delete("/favorites/:id", async (req, res) => {
@@ -56,27 +63,30 @@ app.delete("/favorites/:id", async (req, res) => {
       id,
     },
   });
-  
+
   return res.status(204).send();
 });
 
-app.get("/favorites/:email",async(req,res)=>{
-  const prisma = new PrismaClient()
+app.get("/favorites/:email", async (req, res) => {
+  const prisma = new PrismaClient();
 
-  const {email} = req.params
+  const { email } = req.params;
   const favorites = await prisma.favorites.findMany({
-    where:{
-      user:email
-    }
-  })
+    where: {
+      user: email,
+    },
+  });
 
-  const data = await Promise.all(favorites.map(async favorite =>{
-  const book = await BooksServices.getBookByISBN(favorite.isbn);
-    return {
-      ...favorite, ...book
-    }
-  }))
-  return res.status(200).json(data)
-})
+  const data = await Promise.all(
+    favorites.map(async (favorite) => {
+      const book = await BooksServices.getBookByISBN(favorite.isbn);
+      return {
+        ...favorite,
+        ...book,
+      };
+    })
+  );
+  return res.status(200).json(data);
+});
 
 export default app;
