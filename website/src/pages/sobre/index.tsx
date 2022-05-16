@@ -39,13 +39,13 @@ export default function sobre() {
         <Name2>Tecnologias:</Name2>
 
         <ItemContact IconFa={SiTypescript} LinkContact="Typescript" />
-        <ItemContact IconFa={FaReact} LinkContact="React" />
         <ItemContact IconFa={SiNextdotjs} LinkContact="Next.js" />
-        <ItemContact IconFa={FaGoogle} LinkContact="API Google Books" />
-        <ItemContact IconFa={SiHeroku} LinkContact="Heroku" />
-        <ItemContact IconFa={SiPostgresql} LinkContact="PostgreSQL" />
+        <ItemContact IconFa={FaReact} LinkContact="React" />
+        <ItemContact IconFa={FaGoogle} LinkContact="APIs Google (Books, OAuth)" />
         <ItemContact IconFa={SiVercel} LinkContact="Vercel" />
+        <ItemContact IconFa={SiHeroku} LinkContact="Heroku" />
         <ItemContact IconFa={SiRailway} LinkContact="Railway" />
+        <ItemContact IconFa={SiPostgresql} LinkContact="PostgreSQL" />
       </Content>
     </Container>
   );
