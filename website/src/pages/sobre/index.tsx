@@ -43,7 +43,7 @@ export default function sobre() {
         <ItemContact IconFa={SiNextdotjs} LinkContact="Next.js" />
         <ItemContact IconFa={FaGoogle} LinkContact="API Google Books" />
         <ItemContact IconFa={SiHeroku} LinkContact="Heroku" />
-        <ItemContact IconFa={SiPostgresql} LinkContact="PostGree SQL" />
+        <ItemContact IconFa={SiPostgresql} LinkContact="PostgreSQL" />
         <ItemContact IconFa={SiVercel} LinkContact="Vercel" />
         <ItemContact IconFa={SiRailway} LinkContact="Railway" />
       </Content>

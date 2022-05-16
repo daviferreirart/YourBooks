@@ -10,11 +10,11 @@ export default function Home() {
      <Content>
       <Infos>
         <Name>Bem-vindo a sua biblioteca virtual</Name>
-        <Intro>Utilize o YourBooks para montar a sua lista de livros, pesquisar titulos, 
+        <Intro>Utilize o YourBooks para montar a sua lista de livros, pesquisar título, 
           ver informações sobre as edições e encontrar novas leituras!
         </Intro>
         <Link href="/search">
-          <LinkProjects>Pesquisar livro pelo titulo <FaArrowRight /></LinkProjects>
+          <LinkProjects>Pesquisar livro pelo título <FaArrowRight /></LinkProjects>
         </Link>
 
         <Link href="/searchAuthor">
