@@ -19,6 +19,7 @@ const Search: React.FC = () => {
     thumbnail: string;
     link: string;
     isbn: string;
+    id:string;
   };
 
   const handleSearch = async (event: FormEvent) => {

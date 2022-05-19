@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
 import { BookList } from "../../components/BookList";
 import { api } from "../../services/api";
-import { toast } from "react-toastify";
+import {MdOutlineRemoveCircleOutline} from 'react-icons/md'
 interface BibliotecaProps {
   books: {
     id: string;
@@ -18,7 +18,7 @@ interface BibliotecaProps {
 
 const Biblioteca: React.FC<BibliotecaProps> = ({ books }) => {
   return (
-    <BookList
+    <BookList 
       books={books.map((book) => ({
         authors: book.authors,
         link: book.link,
@@ -26,6 +26,7 @@ const Biblioteca: React.FC<BibliotecaProps> = ({ books }) => {
         thumbnail: book.thumbnail,
         title: book.title,
         isbn: book.isbn,
+        id:book.id
       }))}
     />
   );

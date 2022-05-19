@@ -5,6 +5,7 @@ import { useCallback } from "react";
 import { api } from "../../services/api";
 import { getSession } from "next-auth/react";
 import { toast } from "react-toastify";
+import { MdOutlineRemoveCircleOutline } from "react-icons/md";
 
 type BookData = {
   title: string;
@@ -13,6 +14,7 @@ type BookData = {
   thumbnail: string;
   link: string;
   isbn: string;
+  id: string;
 };
 
 export const BookList: React.FC<{ books: BookData[] }> = ({ books }) => {
@@ -25,6 +27,16 @@ export const BookList: React.FC<{ books: BookData[] }> = ({ books }) => {
       }
     } catch (err) {
       return toast(err.response.data.message);
+    }
+  }, []);
+  const handleDelete = useCallback(async (id: string) => {
+    try {
+      const resp = await api.delete(`/favorites/${id}`);
+      if (resp.status === 204) {
+        return toast("Livro removido dos favoritos!");
+      }
+    } catch (error) {
+      return toast(error.response.data.message);
     }
   }, []);
 
@@ -56,6 +68,9 @@ export const BookList: React.FC<{ books: BookData[] }> = ({ books }) => {
                 <GrFavorite
                   color={"#f134fd"}
                   onClick={() => handleFavorite(livro.isbn)}
+                />
+                <MdOutlineRemoveCircleOutline
+                  onClick={() => handleDelete(livro.id)}
                 />
               </div>
             </Card>

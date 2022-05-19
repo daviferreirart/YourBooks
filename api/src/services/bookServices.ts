@@ -30,7 +30,7 @@ export default abstract class BooksServices {
 
       return books;
     } catch (error) {
-      throw new AppError("Erro ao buscar o livro pelo nome do Autor");
+      throw new AppError("Autor inexistente!",404);
     }
   }
 
@@ -49,7 +49,7 @@ export default abstract class BooksServices {
       }));
       return books[0];
     } catch (error) {
-      throw new AppError("Erro ao buscar o livro pelo ISBN");
+      throw new AppError("ISBN invalido!", 404);
     }
   }
   public static async getBookByTitle(title: string): Promise<BookData[]> {
@@ -69,7 +69,7 @@ export default abstract class BooksServices {
       return books;
     } catch (error) {
       console.log(error);
-      throw new AppError("Erro ao buscar o livro pelo titulo");
+      throw new AppError("Livro não encontrado!", 404);
     }
   }
 }
