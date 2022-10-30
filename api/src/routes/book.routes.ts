@@ -72,7 +72,7 @@ app.delete("/favorites/:id", async (req, res) => {
       id,
     },
   });
-
+  await prisma.$disconnect()
   return res.status(204).send();
 });
 
@@ -95,6 +95,7 @@ app.get("/favorites/:email", async (req, res) => {
       };
     })
   );
+  await prisma.$disconnect()
   return res.status(200).json(data);
 });
 
