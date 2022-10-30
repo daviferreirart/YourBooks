@@ -49,7 +49,7 @@ app.post("/favorites", async (req, res) => {
     });
     return res.status(201).send();
   }
-
+  await prisma.$disconnect()
   throw new AppError("Livro já favoritado!");
 });
 
